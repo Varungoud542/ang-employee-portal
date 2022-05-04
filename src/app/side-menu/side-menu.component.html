@@ -1,0 +1,34 @@
+<div>
+    <div class="header-contener" [ngClass]="{ 'expand-menu' : isToggled }">
+        <div class="side-icon">
+            <i (click)="toggleMenu()" class="fa fa-align-justify"></i>
+        </div>
+        <div class="side-icon">
+            <i class="fa fa-home" (click)='gpTohome()'></i>&nbsp;<span *ngIf="isToggled">Home</span>
+        </div>
+        <div class="side-icon">
+            <i class="fa fa-address-card-o" (click)='goToCareers()'></i>&nbsp;
+            <span *ngIf="isToggled">Carrer</span>
+        </div>
+        <div class="side-icon">
+            <i class="fa fa-calendar-minus-o" (click)='goToleaves()'></i>&nbsp;
+            <span *ngIf="isToggled">Leaves</span>
+        </div>
+        <div class="side-icon">
+            <i class="fa fa-user" (click)='goToEmployees()'></i>&nbsp;
+            <span *ngIf="isToggled">Empolyees</span>
+        </div>
+        <div class="side-icon">
+            <i class="fa fa-sign-out" (click)="logout()"></i>&nbsp;
+            <span *ngIf="isToggled">Logout</span>
+        </div>
+        <div class="side-icon">
+            <i class="fa fa-check-square-o" aria-hidden="true" (click)="todo()"></i>&nbsp;
+            <span *ngIf="isToggled">Logout</span>
+        </div>
+         <div class="side-icon">
+            <i class="fa fa-check-square-o" aria-hidden="true" (click)="cart()"></i>&nbsp;
+            <span *ngIf="isToggled">Logout</span>
+        </div>
+    </div>
+</div>

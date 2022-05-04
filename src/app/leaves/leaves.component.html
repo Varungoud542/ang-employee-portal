@@ -1,0 +1,77 @@
+<div class="employees-header">
+    <div>
+        <button (click)="employeeBtn()" class="leaves-btn" [ngClass]="{'active-btn':showLeaves}">Leaves</button>
+        <button (click)="employeeBtn()" [ngClass]="{'active-btn':!showLeaves}" class="attendance-btn">Attendance</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            *ngIf="current.role !== 'admin'">
+            Add Leave
+        </button>
+    </div>
+    <div class="employees-conatner">
+        <table>
+            <tr>
+                <th (click)="sortItems()">Name</th>
+                <th>Leave Duration</th>
+                <th>Leave Type</th>
+                <th>status</th>
+                <th *ngIf="current.role !== 'admin'">Action</th>
+
+            </tr>
+            <tr *ngFor="let employeeData of employeesData;let i = index">
+                <td>{{employeeData.name}}</td>
+                <td>{{employeeData.leaveDuration}}</td>
+                <td>{{employeeData.leaveType}}</td>
+                <td>{{employeeData.status}}</td>
+                <td><button (click)="getEdited(employeeData)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal"
+                        *ngIf="current.role !== 'admin'">
+                        Edit Leave
+                    </button></td>
+                <td><button *ngIf="current.role == 'admin' && employeeData.status == 'pendding'" class="primary-btn" (click)="approveOrRejectLeave(employeeData, 'Approved')">Approve</button>
+                    <button *ngIf="current.role == 'admin' && employeeData.status == 'pendding'" class="rejectstyle" (click)="approveOrRejectLeave(employeeData, 'Rejected')">Reject</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Modal Start -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Leave</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" placeholder="Name" [(ngModel)]='current.name'><br>
+                <input type="text" placeholder="Leave Duration" [(ngModel)]='employeeLeaveRequst.leaveDuration'><br>
+                <input type="text" placeholder="Leave Type" [(ngModel)]='employeeLeaveRequst.leaveType'><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="submitLeave()">submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal end -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Leaves</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" placeholder="Name" [(ngModel)]='current.name'><br>
+                <input type="text" placeholder="Leave Duration" [(ngModel)]='editedUserLeave.leaveDuration'><br>
+                <input type="text" placeholder="Leave Type" [(ngModel)]='editedUserLeave.leaveType'><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                  (click)="submitEditedLeave()"  >submit</button>
+            </div>
+        </div>
+    </div>
+</div>

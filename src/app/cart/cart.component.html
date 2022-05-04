@@ -1,0 +1,9 @@
+<table>
+    <tr>
+        <th>fruits</th>
+        <th>count</th>
+    </tr>
+  <tr *ngFor="let fruit of this.fruits;let i =index">
+      <td>{{fruit.name}}</td>
+      <td><i class="fa fa-minus" aria-hidden="true"(click)='minus(i)'></i>{{fruit.quntity}}<i class="fa fa-plus" aria-hidden="true" (click)="add(i)"></i></td>
+  </tr>

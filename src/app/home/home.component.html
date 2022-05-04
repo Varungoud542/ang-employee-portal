@@ -1,0 +1,38 @@
+<app-header></app-header>
+<app-side-menu></app-side-menu>
+
+<!-- <router-outlet name='child'></router-outlet> -->
+<div class="home-container">
+    <div class="flex-container">
+        <div class="positions-container">
+            <button  (click)='showPositionsOrStats(true)' [ngClass]="{'active-btn':showPositions}" type="button" class="posistion-btn">Open Positions</button>
+            <button (click)='showPositionsOrStats(false)' [ngClass]="{'active-btn':!showPositions}" type="button" class="stats-btn">stats</button>
+            <table *ngIf="showPositions">
+                <tr>
+                    <th>Positions</th>
+                    <th>Interview By</th>
+                </tr>
+                <tr *ngFor="let position of positions">
+                    <td>{{position.position}}</td>
+                    <td>{{position.name}}</td>
+                </tr>
+            </table>
+            <table *ngIf="!showPositions">
+                <tr>
+                    <th>position</th>
+                    <th>Interview By</th>
+                </tr>
+                <tr *ngFor="let stat of stats">
+                    <td>{{stat.position}}</td>
+                    <td>{{stat.name}}</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <app-employees></app-employees>
+        </div>
+    </div>
+    <div>
+        <app-leaves></app-leaves>
+    </div>
+</div>

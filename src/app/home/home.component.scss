@@ -1,0 +1,49 @@
+// .table-contener{
+//     // position: absolute;
+//     // right: 34%;
+//     // margin-top: 35px;
+// }
+.stats-btn{
+    border: none;
+    padding: 5px 35px;
+    color: black;
+    border-radius: 2px;
+}
+.posistion-btn{
+    border: none;
+    padding: 5px 15px;
+    color: black;
+    border-radius: 2px;
+}
+table,th,tr,td{
+    text-align: center;
+}
+td,th{
+    padding:15px 65px;;
+}
+// .tabel-header{
+//     display: flex;
+//     justify-content: center;
+// }
+.home-container {
+    margin-left: 50px;
+}
+.flex-container {
+    display: flex;
+    // div {
+    //     width: 50%;
+    //     text-align: center;
+
+    // }
+}
+.positions-container {
+    text-align: center;
+}
+.change-color{
+color: rgb(226, 149, 149);
+}
+
+.active-btn {
+    background-image: linear-gradient(to right, #6585FF,#8CB3FF);
+    color: white;
+}
