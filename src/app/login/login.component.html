@@ -1,6 +1,41 @@
-<input placeholder="Name" type="text" [(ngModel)]='currentUser.name'>
-<input placeholder="Password" type="password" [(ngModel)]='currentUser.password'>
-<input placeholder="ID" type="text" [(ngModel)]='currentUser.id'>
-<button (click)="login()">submit</button>
-<button (click)="register()">register</button>
-<div *ngIf="errorMsg">{{errorMsg}}</div>
+
+<mat-card class="login-card">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="loginForm.controls['name']"
+      placeholder="Name"
+    />
+    <mat-error *ngIf="loginForm.controls['name'].hasError('required')">
+      Name is required
+    </mat-error>
+  </mat-form-field><br>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input
+      type="password"
+      matInput
+      [formControl]="loginForm.controls['password']"
+      placeholder="password"
+    />
+    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+      password is required
+    </mat-error>
+  </mat-form-field><br>
+  <mat-form-field>
+    <mat-label>ID</mat-label>
+    <input
+      matInput
+      type="number"
+      [formControl]="loginForm.controls['id']"
+      placeholder="id"
+    />
+    <mat-error *ngIf="loginForm.controls['id'].hasError('required')">
+      id is required
+    </mat-error>
+  </mat-form-field><br>
+  <button (click)="login()"  mat-raised-button color="primary" [disabled]="!loginForm.valid">Submit</button>
+</mat-card>
+
