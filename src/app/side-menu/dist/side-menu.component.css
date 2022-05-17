@@ -1,0 +1,23 @@
+.header-contener {
+  width: 3%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  transition: 1s;
+  box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+  height: 100%;
+  z-index: 99;
+}
+
+.side-icon {
+  margin-bottom: 20px;
+  padding: 15px;
+  color: #5f5d5d;
+  display: flex;
+  align-items: center;
+}
+
+.expand-menu {
+  width: 10%;
+}

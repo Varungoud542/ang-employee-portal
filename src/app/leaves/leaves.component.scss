@@ -1,49 +1,57 @@
-.primary-btn{
-    background-image: linear-gradient(to right, #6585FF,#8CB3FF);
-    border: none;
-    padding: 5px 20px;
-    color: white;
-    border-radius: 2px;
-}
-.rejectstyle{
-    background-color: white;
-    border: 1px solid gray;
-    padding: 4px 30px;
-}
-table,th,tr,td{
-    border-bottom: 1px solid #DEDACF;
-    border-collapse: collapse; 
-    text-align: center;
-}
-// .employees-conatner{
-//     // position: absolute;
-//     // right: 10%;
-//     // top: 100%;
+// .primary-btn{
+//     background-image: linear-gradient(to right, #6585FF,#8CB3FF);
+//     border: none;
+//     padding: 5px 20px;
+//     color: white;
+//     border-radius: 2px;
 // }
-td,th{
-    padding:15px 65px;;
-}
-// .employees-header{
-//     // display: flex;
-//     // justify-content: center;
-//     // position: absolute;
-//     // right: 10%;
-//     // top: 100%;
+// .rejectstyle{
+//     background-color: white;
+//     border: 1px solid gray;
+//     padding: 4px 30px;
 // }
-.attendance-btn{
-    border: none;
-    padding: 5px 20px;
-    color: black;
-    border-radius: 2px;
-}
-.leaves-btn{
-    border: none;
-    padding: 5px 35px;
-    border-radius: 2px;
-}
-.active-btn{
-    background-image: linear-gradient(to right, #6585FF,#8CB3FF);
-    color: white;
-}
+// table,th,tr,td{
+//     border-bottom: 1px solid #DEDACF;
+//     border-collapse: collapse; 
+//     text-align: center;
+// }
+// // .employees-conatner{
+// //     // position: absolute;
+// //     // right: 10%;
+// //     // top: 100%;
+// // }
+// td,th{
+//     padding:15px 65px;;
+// }
+// // .employees-header{
+// //     // display: flex;
+// //     // justify-content: center;
+// //     // position: absolute;
+// //     // right: 10%;
+// //     // top: 100%;
+// // }
+// .attendance-btn{
+//     border: none;
+//     padding: 5px 20px;
+//     color: black;
+//     border-radius: 2px;
+// }
+// .leaves-btn{
+//     border: none;
+//     padding: 5px 35px;
+//     border-radius: 2px;
+// }
+// .active-btn{
+//     background-image: linear-gradient(to right, #6585FF,#8CB3FF);
+//     color: white;
+// }
 
 
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

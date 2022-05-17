@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { LoginService } from '../services/login.services';
 
 @Component({
     selector: 'app-side-menu',
@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
 })
 export class SidemenuComponent {
     public isToggled = false;
-    constructor(public router:Router){}
+    constructor(public router:Router,public loginService:LoginService){}
 
+    panelOpenState=false;
     goToCareers(){
         this.router.navigateByUrl('careers')
     }
     goToleaves(){
-        this.router.navigateByUrl('leaves')
+        this.router.navigateByUrl('leaves',)
     }
     goToEmployees(){
         this.router.navigateByUrl('employees')
@@ -36,6 +37,10 @@ export class SidemenuComponent {
         localStorage.removeItem('appUserName')
         localStorage.removeItem('appUserRole')
         this.router.navigateByUrl('login')
+        this.loginService.loggedInSubject.next(false)
+    }
+    goToHandsontable(){
+        this.router.navigateByUrl('hondsontable')
     }
    
 }

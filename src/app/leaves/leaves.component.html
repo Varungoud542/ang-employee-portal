@@ -1,4 +1,4 @@
-<div class="employees-header">
+<!-- <div class="employees-header">
     <div>
         <button (click)="employeeBtn()" class="leaves-btn" [ngClass]="{'active-btn':showLeaves}">Leaves</button>
         <button (click)="employeeBtn()" [ngClass]="{'active-btn':!showLeaves}" class="attendance-btn">Attendance</button>
@@ -26,14 +26,13 @@
                         *ngIf="current.role !== 'admin'">
                         Edit Leave
                     </button></td>
-                <td><button *ngIf="current.role == 'admin' && employeeData.status == 'pendding'" class="primary-btn" (click)="approveOrRejectLeave(employeeData, 'Approved')">Approve</button>
-                    <button *ngIf="current.role == 'admin' && employeeData.status == 'pendding'" class="rejectstyle" (click)="approveOrRejectLeave(employeeData, 'Rejected')">Reject</button>
+                <td><button *ngIf="current.role == 'admin' && employeeData.status == 'Pending'" class="primary-btn" (click)="approveOrRejectLeave(employeeData, 'Approved')">Approve</button>
+                    <button *ngIf="current.role == 'admin' && employeeData.status == 'Pending'" class="rejectstyle" (click)="approveOrRejectLeave(employeeData, 'Rejected')">Reject</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-<!-- Modal Start -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -54,7 +53,7 @@
         </div>
     </div>
 </div>
-<!-- Modal end -->
+
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -74,4 +73,54 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
+</mat-form-field>
+<table mat-table [dataSource]="dataSource">
+  <!-- Position Column -->
+  <ng-container *ngFor="let col of displayedColumns">
+    <ng-container matColumnDef="{{ col }}">
+      <th mat-header-cell *matHeaderCellDef>{{ col }}</th>
+      <ng-container *ngIf="col !== 'actions' && col !=='time'">
+        <td mat-cell *matCellDef="let element">{{ element[col] }}</td>
+      </ng-container>
+      <ng-container *ngIf="col == 'time'">
+       <td mat-cell *matCellDef="let element">{{ element[col]}}
+         <span>{{today|date:'shortTime'}}</span>
+       </td>
+      </ng-container>
+      <ng-container *ngIf="col == 'actions'">
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            color="primary"
+            *ngIf="appUser.role == 'admin' && element.status == 'Pending'"
+            class="rejectstyle"
+            (click)="approveOrRejectLeave(element, 'Approved')"
+          >
+            Approve
+          </button>
+          <button
+          (click)="approveOrRejectLeave(element,'Rejected')"
+            mat-raised-button
+            color="warn"
+            *ngIf="appUser.role == 'admin' && element.status == 'Pending'"
+            class="rejectstyle"
+            
+          >
+            Reject
+          </button>
+        </td>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  <!-- Row shown when there is no matching data. -->
+</table>
+<!-- new -->

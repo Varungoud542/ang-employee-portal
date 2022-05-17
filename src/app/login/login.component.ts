@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeesService } from '../services/employees.services';
 import { FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.services';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,12 +11,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   public loginForm: any;
   errorMsg = '';
-
-
   constructor(
     public router: Router,
     public employeesService: EmployeesService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public loginService:LoginService
   ) {}
 
   register() {
@@ -37,8 +37,10 @@ export class LoginComponent implements OnInit {
     const loginFormValues = this.loginForm.value;
     for (let employee of this.employeesService.employees) {
       if (loginFormValues.id === Number(employee.id)) {
-        localStorage.setItem('appUserName', employee.name);
-        localStorage.setItem('appUserRole', employee.role);
+        // localStorage.setItem('appUserName', employee.name);
+        // localStorage.setItem('appUserRole', employee.role);
+        localStorage.setItem('appUser', JSON.stringify(employee));
+        this.loginService.loggedInSubject.next(true);
         this.router.navigateByUrl('home');
         return;
       }

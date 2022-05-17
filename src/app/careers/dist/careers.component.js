@@ -1,31 +1,46 @@
-import { Component } from '@angular/core';
-@Component({
-  selector: 'app-careers',
-  templateUrl: './careers.component.html',
-  styleUrls: ['./careers.component.scss'],
-})
-export class CareersComponent {
-  // name = 'varun';
-  // person = 'SUCHARITHA';
-  toDate = new  Date();
-  //   evenOrOddNumbers: any;
-  //   vowelAlphabets = ['a', 'e', 'i', 'o', 'u'];
-  //   alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  //   numbers = [33, 10, 5, 77, 100, 111];
-  //   number = 1234;
-  //   num: any;
-  //   reversNumber: any;
-  //   arr: any[] = [
-  //     { name: 'Srini', age: 28 },
-  //     { name: 'varun', age: 20 },
-  //     { name: 'srikanth', age: 27 },
-  //     { name: "chikky", age: 26 }
-  //   ];
-  //   content = "hellow world"
-  ngOnInit() {
-    console.log(this.toDate);
-  }
-}
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+exports.__esModule = true;
+exports.CareersComponent = void 0;
+var core_1 = require("@angular/core");
+var CareersComponent = /** @class */ (function () {
+    function CareersComponent() {
+        // name = 'varun';
+        // person = 'SUCHARITHA';
+        this.toDate = new Date();
+    }
+    //   evenOrOddNumbers: any;
+    //   vowelAlphabets = ['a', 'e', 'i', 'o', 'u'];
+    //   alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    //   numbers = [33, 10, 5, 77, 100, 111];
+    //   number = 1234;
+    //   num: any;
+    //   reversNumber: any;
+    //   arr: any[] = [
+    //     { name: 'Srini', age: 28 },
+    //     { name: 'varun', age: 20 },
+    //     { name: 'srikanth', age: 27 },
+    //     { name: "chikky", age: 26 }
+    //   ];
+    //   content = "hellow world"
+    CareersComponent.prototype.ngOnInit = function () {
+        console.log(this.toDate);
+    };
+    CareersComponent = __decorate([
+        core_1.Component({
+            selector: 'app-careers',
+            templateUrl: './careers.component.html',
+            styleUrls: ['./careers.component.scss']
+        })
+    ], CareersComponent);
+    return CareersComponent;
+}());
+exports.CareersComponent = CareersComponent;
 //     this.getNumber("10");
 //     this.getAlphabets("b");
 //     this.checkLeapYear(2002);
@@ -45,7 +60,6 @@ export class CareersComponent {
 //     this.swapNumb();
 //     this.tabel(3);
 //     this.getLagerestNumbers();
-
 //   }
 //   getNumber(num: any) {
 //     num = Number(num)
@@ -58,7 +72,6 @@ export class CareersComponent {
 //   }
 //   getAlphabets(x: any) {
 //     let index = this.vowelAlphabets.indexOf(x)
-
 //     console.log(index)
 //     // for (let alphabet of this.alphabets) {
 //     //   if (alphabet === x) {
@@ -104,7 +117,6 @@ export class CareersComponent {
 //     let leth = num.length
 //     console.log(leth)
 //   }
-
 //   reverseNumber() {
 //     // let numb =Number(String(this.number).split('').reverse().join(''))
 //     // console.log(numb)
@@ -156,7 +168,6 @@ export class CareersComponent {
 //           console.log("its an prime number")
 //           return;
 //         }
-
 //         console.log("its an composit number")
 //       }
 //     }
@@ -233,7 +244,6 @@ export class CareersComponent {
 //     // this.num = this.numbers.sort((a, b) => a - b);
 //     // console.log(this.num)
 //     // console.log(this.num[this.num.length - 1])
-
 //     let sorted = false;
 //     while (!sorted) {
 //       sorted = true;
@@ -246,8 +256,6 @@ export class CareersComponent {
 //         }
 //       }
 //     }
-
 //     console.log(this.numbers)
 //   }
-
 // }

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { EmployeesService } from '../services/employees.services';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-leaves',
@@ -7,23 +9,39 @@ import { EmployeesService } from '../services/employees.services';
   styleUrls: ['./leaves.component.scss'],
 })
 export class LeavesComponent {
-  showLeaves = true;
-  constructor(public employeesService: EmployeesService) {}
-  current: any = {};
+  rejectedLeaveReqst: any = {};
+  appUser: any = {};
   employeesData: any = [];
   employeeLeaveRequst: any = {};
   editedUserLeave: any = {};
-  updatedData: any = [];
-  approvedUser: any = [];
-  updatedUsers: any = [];
+  showLeaves = true;
+  today = new Date();
+  displayedColumns: any[] = [
+    'id',
+    'name',
+    'position',
+    'leaveType',
+    'leaveDuration',
+    'role',
+    'status',
+    'time',
+    'actions',
+  ];
+  dataSource: any;
+  constructor(
+    public employeesService: EmployeesService,
+    public dialog: MatDialog
+  ) {}
+
   ngOnInit() {
-    this.current.name = localStorage.getItem('appUserName');
-    this.employeeLeaveRequst.name = this.current.name;
-    this.current.role = localStorage.getItem('appUserRole');
-    this.updatedUsers = JSON.parse(
-      localStorage.getItem('updatedUsers') as string
-    );
-    if (this.current.role === 'admin') {
+    this.appUser = JSON.parse(localStorage.getItem('appUser') as string);
+    // this.appUser.name = localStorage.getItem('appUserName');
+    // this.employeeLeaveRequst.name = this.appUser.name;
+    // this.appUser.role = localStorage.getItem('appUserRole');
+    // this.updatedUsers = JSON.parse(
+    //   localStorage.getItem('updatedUsers') as string
+    // );
+    if (this.appUser.role === 'admin') {
       this.employeesData = JSON.parse(
         localStorage.getItem('employees') as string
       );
@@ -32,15 +50,16 @@ export class LeavesComponent {
         localStorage.getItem('employees') as string
       );
       this.employeesData = this.employeesData.filter(
-        (user: any) => user.name === this.current.name
+        (user: any) => user.name === this.appUser.name
       );
     }
-      for (let updatedUser of this.updatedUsers) {
-        let index = this.employeesData.findIndex(
-          (ele: any) => ele.id == updatedUser.id
-        );
-        this.employeesData[index] = updatedUser;
-      }
+    this.dataSource = new MatTableDataSource(this.employeesData);
+    // for (let updatedUser of this.updatedUsers) {
+    //   let index = this.employeesData.findIndex(
+    //     (ele: any) => ele.id == updatedUser.id
+    //   );
+    //   this.employeesData[index] = updatedUser;
+    // }
   }
   submitLeave() {
     this.employeesData.push(this.employeeLeaveRequst);
@@ -64,11 +83,18 @@ export class LeavesComponent {
     this.showLeaves = !this.showLeaves;
   }
   approveOrRejectLeave(employeeData: any, status: string) {
-    employeeData.status = status;
-    this.updatedData.push(employeeData);
-    localStorage.setItem('updatedUsers', JSON.stringify(this.updatedData));
+    this.rejectedLeaveReqst = employeeData;
+    if (status == 'Approved') {
+      employeeData.status = status;
+      localStorage.setItem('employees', JSON.stringify(this.employeesData));
+    } else {
+      let dialogRef = this.dialog.open(ConfirmDialog);
+      dialogRef.componentInstance.onReject.subscribe((res: any) => {
+        this.rejectedLeaveReqst.status = 'Rejected';
+        dialogRef.close();
+      });
+    }
   }
-
 
   sortItems() {
     this.employeesData.sort((a: any, b: any) => {
@@ -84,5 +110,24 @@ export class LeavesComponent {
       // names must be equal
       return 0;
     });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+}
+
+@Component({
+  selector: 'app-confirm-dialog',
+  templateUrl: './confirm-dialog.component.html',
+})
+export class ConfirmDialog {
+  constructor(public dialogRef: MatDialogRef<ConfirmDialog>) {}
+  onReject = new EventEmitter();
+  reject() {
+    this.onReject.emit();
+  }
+  onNoClick() {
+    this.dialogRef.close();
   }
 }
