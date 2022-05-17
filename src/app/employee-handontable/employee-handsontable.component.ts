@@ -8,16 +8,13 @@ import { Component } from '@angular/core';
 export class employeeHandsontableponent {
   employees: any = [];
   settings = {};
-  formattedEmp:any;
   ngOnInit() {
     this.employees = JSON.parse(localStorage.getItem('employees') as string);
-    this.fromtedValues()
     this.settings = {
-      data: this.formattedEmp,
+      data: this.formattedEmps,
       afterOnCellMouseDown: (event: any, coords: any, TD: any) => {
         if (event.target.name === 'approveBtn') {
           // this.formattedEmp[6]='Approved'
-          ;
         } else if (event.target.name === 'rejectBtn') {
           // this.formattedEmp='Rejected'
         }
@@ -49,7 +46,8 @@ export class employeeHandsontableponent {
       ],
     };
   }
-  fromtedValues(){
+
+  formattedEmps() {
     let keys = [
       'id',
       'name',
@@ -60,13 +58,13 @@ export class employeeHandsontableponent {
       'status',
       'actions',
     ];
-     this.formattedEmp = this.employees.map((emp: any) => {
+    const formattedEmp = this.employees.map((emp: any) => {
       let empArr = [];
       for (let key of keys) {
         empArr.push(emp[key]);
       }
       return empArr;
     });
+    return formattedEmp;
   }
- 
 }

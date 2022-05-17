@@ -35,12 +35,6 @@ export class LeavesComponent {
 
   ngOnInit() {
     this.appUser = JSON.parse(localStorage.getItem('appUser') as string);
-    // this.appUser.name = localStorage.getItem('appUserName');
-    // this.employeeLeaveRequst.name = this.appUser.name;
-    // this.appUser.role = localStorage.getItem('appUserRole');
-    // this.updatedUsers = JSON.parse(
-    //   localStorage.getItem('updatedUsers') as string
-    // );
     if (this.appUser.role === 'admin') {
       this.employeesData = JSON.parse(
         localStorage.getItem('employees') as string
@@ -54,12 +48,6 @@ export class LeavesComponent {
       );
     }
     this.dataSource = new MatTableDataSource(this.employeesData);
-    // for (let updatedUser of this.updatedUsers) {
-    //   let index = this.employeesData.findIndex(
-    //     (ele: any) => ele.id == updatedUser.id
-    //   );
-    //   this.employeesData[index] = updatedUser;
-    // }
   }
   submitLeave() {
     this.employeesData.push(this.employeeLeaveRequst);

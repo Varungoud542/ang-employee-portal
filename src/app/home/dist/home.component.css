@@ -1,0 +1,42 @@
+.stats-btn {
+  border: none;
+  padding: 5px 35px;
+  color: black;
+  border-radius: 2px;
+}
+
+.posistion-btn {
+  border: none;
+  padding: 5px 15px;
+  color: black;
+  border-radius: 2px;
+}
+
+table,
+th,
+tr,
+td {
+  text-align: center;
+}
+
+td,
+th {
+  padding: 15px 65px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.positions-container {
+  text-align: center;
+}
+
+.change-color {
+  color: #e29595;
+}
+
+.active-btn {
+  background-image: linear-gradient(to right, #6585ff, #8cb3ff);
+  color: white;
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from './services/login.services';
+import { LoginService } from './services/logins.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,12 +7,11 @@ import { LoginService } from './services/login.services';
 })
 export class AppComponent {
   title = 'projector';
-  isloggedIn = false;
+  isloggedIn: any;
   constructor(public loginService: LoginService) {}
 
   ngOnInit() {
-    this.loginService.loggedInSubject.subscribe(
-      (res) => (this.isloggedIn = res)
-    );
+    // this.isloggedIn = JSON.parse(localStorage.getItem('isLogedIn') as string);
+    this.loginService.isLogedIn.subscribe((res) => (this.isloggedIn = res));
   }
 }
